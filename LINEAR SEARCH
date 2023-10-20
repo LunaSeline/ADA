@@ -1,0 +1,33 @@
+#include <stdio.h>
+#define N 100
+int main() {
+ int arr[N], n, k, i, count=0;
+
+ printf("NAME: HRUDYA\nENROLLMENT NO.:A2305221030\n\n");
+ printf("Enter the no. of elements in the array: ");
+ scanf("%d", &n);
+
+ printf("Enter the array elements: \n");
+
+ for( i=0; i<n; i++){
+ scanf("%d", &arr[i]);
+ }
+
+ printf("\nEnter the value you want to search: ");
+ scanf("%d", &k);
+
+ for(i=0; i<n; i++){
+ if (arr[i]==k){
+2
+ count= i+1;
+ }
+ }
+ if(count>=1){
+ printf("\n%d is in position %d", k, count);
+ }
+
+ else{
+ printf("%d does not exist in the array.", k);
+ }
+
+}
