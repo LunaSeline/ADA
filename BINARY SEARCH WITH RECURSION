@@ -1,0 +1,52 @@
+//
+PSUDOCODE:
+Procedure binary_search
+A ← sorted array
+n ← size of array
+x ← value to be searched
+Set lowerBound = 1
+Set upperBound = n
+while x not found
+if upperBound < lowerBound
+EXIT: x does not exists.
+set midPoint = lowerBound + ( upperBound - lowerBound ) / 2
+if A[midPoint] < x
+set lowerBound = midPoint + 1
+if A[midPoint] > x
+set upperBound = midPoint - 1
+if A[midPoint] = x
+EXIT: x found at location midPoint
+end while
+end procedure
+//
+
+// CODE: 
+#include <stdio.h>
+#define N 100
+int binarySearch(int arr[], int l, int r, int x){
+if (r >= l)
+{
+
+int mid = l + (r - l)/2;
+if (arr[mid] == x) return mid;
+if (arr[mid] > x) return binarySearch(arr, l, mid-1, x);
+return binarySearch(arr, mid+1, r, x);
+}
+return -1;
+}
+int main(void){
+int i, n, arr[N], x;
+printf("NAME: HRUDYA\nENROLLMENT NO.: A2305221030\n\n");
+printf("Enter the no. of elements in the array: ");
+scanf("%d", &n);
+printf("Enter the array elements: \n");
+for( i=0; i<n; i++){
+scanf("%d", &arr[i]);
+}
+printf("\nEnter the no you want to search: ");
+scanf("%d", &x);
+int result = binarySearch(arr, 0, n-1, x);
+(result == -1)? printf("\nElement is not present in array")
+: printf("\nElement is present at index %d", result+1);
+return 0;
+}
