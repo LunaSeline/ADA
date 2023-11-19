@@ -1,0 +1,60 @@
+// PSUDO CODE:
+
+/* Fractional Knapsack (Array W, Array V, int M)
+for i <- 1 to size (V)
+calculate cost[i] <- V[i] / W[i]
+Sort-Descending (cost)
+i ← 1
+while (i <= size(V))
+if W[i] <= M
+M ← M – W[i]
+total ← total + V[i];
+if W[i] > M
+i ← i+1
+*/
+
+// CODE:
+
+#include <stdio.h>
+void main()
+{
+int cap, num, cur_weight, item, i, w[10], value[10], used[10];
+float total_profit;
+printf("NAME: HRUDYA\nENROLLMENT NO.:A2305221030\n\n");
+printf("Enter the capacity of knapsack: ");
+scanf("%d", &cap);
+printf("Enter the number of items: ");
+scanf("%d", &num);
+printf("Enter the weight and value of %d item: ", num);
+for (i = 0; i<num; i++)
+{printf("\nWeight[%d]: ", i+1);
+scanf("%d", &w[i]);
+printf("Value[%d]: ", i+1);
+scanf("%d", &value[i]); }
+for (i = 0; i < num; ++i)
+used[i]= 0;
+cur_weight = cap;
+while (cur_weight > 0)
+{item = -1;
+
+25
+
+for (i = 0; i < num; ++i)
+if ((used[i] == 0) &&
+((item == -1) || ((float) value[i] / w[i] > (float) value[item] / w[item])))
+item = i;
+used[item] = 1;
+cur_weight -= w[item];
+total_profit += value[item];
+if (cur_weight >= 0)
+printf("\nADDED OBJECT %d (%d, %dKg) COMPLETELY. \nSPACE
+LEFT: %d.", item + 1, value[item], w[item], cur_weight);
+else
+{int item_percent = (int) ((1 + (float) cur_weight / w[item]) * 100);
+printf("\nADDED %d%% (%d, %dKg) OF OBJECT %d.",
+item_percent, value[item], w[item], item + 1);
+total_profit -= value[item];
+total_profit += (1 + (float)cur_weight / w[item]) * value[item];
+} }
+printf("\n\nTOTAL PROFIT %.2f.", total_profit);
+}
